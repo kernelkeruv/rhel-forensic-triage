@@ -7,9 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: repository structure
+      - name: Verify documented repository scaffold
         run: |
+          set -Eeuo pipefail
           test -f README.md
           test -f LICENSE
           test -f SECURITY.md
-          test -d src
+          grep -Fq "No executable triage implementation" README.md
